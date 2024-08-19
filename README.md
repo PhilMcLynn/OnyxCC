@@ -5,7 +5,11 @@ Onyx Product coding challenge solution.
 ## Description
 
 Project follows Clean Arhictecture principals and consequently you should consider this when reviewing solution.
-Mediatr pattern is used to enable loose coupling amongst the code features
+Mediatr pattern is used to enable loose coupling amongst the code features.
+This diagram shows where it could fit in a microservices solution for a shopping cart type of application.
+
+<img width="575" alt="image" src="https://github.com/user-attachments/assets/1eed8e97-c0b7-48f4-961d-76fad5406cf3">
+
 
 ## Getting Started
 * VS 2022
