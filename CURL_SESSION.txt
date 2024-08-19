@@ -1,0 +1,82 @@
+HEALTHCHECK
+=----------
+curl -X 'GET' \
+  'https://localhost:7152/health' \
+  -H 'accept: application/json'
+
+REGISTER
+--------
+curl -X 'POST' \
+  'https://localhost:7152/register' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "email": "phil@mclynn.com",
+  "password": "Password01_"
+}'
+
+LOGIN (to get bearer token)
+-----
+curl -X 'POST' \
+  'https://localhost:7152/login' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "email": "phil@mclynn.com",
+  "password": "Password01_"
+}'
+eg.
+{
+  "tokenType": "Bearer",
+  "accessToken": "CfDJ8NmLH9oxbCZMv0vJ2THkhBQAgC3J0QuS1516DIC3kDQ2rR4e0pgxbxGF_WLMuKHgg2gmPGijL-fKqSEQhNt1fnM2ndauzFIch0TjaHe9BVvoYhvgS4CdWIZ2H0zKS3EKY243ljSOxF6cQl0BV7MVz8pGMucDX1Tz8_0gtMBmO7AaA8rXC0jbUxCLmjmDoI3agQzOWGLYePJK7fmdpvyNUOghgSrmhgUDVR8Q1AJR9TxgbeR60ilRdxx_JP8Z91TLwr5Mzh1vwkgpokoj1C8b0JhVFzo5ET0nh9c7sPnjyzq16eh-Q7jftZsnudi7gK8vPusrOuhjvuU1FLaawUp5D26MyFwoxSQD63OZiDvg-auQcFLxtHIJYgVPezhhdLFqGtVK6HtEGzA6f8jKHsBAfOhQ3sJ6STIcxjuHoxFB-Qv3xO91lYyWy6XGkUzata--BTRLGrQEM7xi6AmkBCHHCJtk-AaYlfmTibNQfmfqvV07sy-MdCxJqpCmKABoPouLLkXDCldbku-GNTjPgiznBZD1qjBGcwVzECXCwmFncn7H3xpGXtJlYjeEZlycTxobu-bVkA9sIOiMqWSqPyBbqmrUqJJMGaYlNMb_XlmUw9GvJcgXATpKfsGQ2zWa4ztWu52Gi0kDwyYBhxD6SoDKkXBBcO41v38Aj47Q8YR9qp7saZ8OJNd_URDdK0SVndWBig",
+  "expiresIn": 3600,
+  "refreshToken": "CfDJ8NmLH9oxbCZMv0vJ2THkhBQ2AC2BqjVTXynfP6PmqYywuXk-T0NPH3o898yFGxA67ix6tOc6wOycdvKun4tiIf1nRYomggQxdEfZaPbmlrkUBf2xfh4iCqD9Lfy96c1XkwjZjdoSzL144LBD9EXHngC7IRsr7Adt4fUR1WafDvPXM_MQxMPFIgY91JJoNBeMKqWCURT5vzJR7nswHasECBy-TpQquEgbmMGUiYw-NrCC1DryeYGh-AA75RF4o62_6Sabx6W8-wRWLOASxB0LglUdqqZ56sLuh61OKGUHouM3DD-WyeBMtouuIn7Ctxw4NGJUHJ2gc5G6vOeXeLNzIGpDDAVb1ZlVZIFY4HNJfuDF64AqH3wJ8i2OAaFL6jG1Ti4ULK-If86e-E6V9KL56Wiyq6fLCEKN4E2tg-BAMVZBhBGCEMFPcBoEYxmzPkBNZ2NeDI69B3gwT-qwgIieiIeRt7kP1Pem9gMdcIrtYLzkOXQ7UAMB_T3TXiMspZV64pgUVoFABAhQTrkDhr2F1X5FO14EbqPEpRZI9uVBGQNIW1kOvAvIHi08b6-bsQKju9Gwklss_XttALocCjiU0jafZ2xFSDmWJQXucCGTxQMEZJQuRJKKs2ORR85ws7gjw2MUghgW0uV_HSvDqKTbyvAMR9oLE3NotCbnUTHOwgD2YW1Ggx2SXMMZkSX8VSnxnA"
+}
+
+KNOWNCOLOURS
+-------------
+curl -X 'GET' \
+  'https://localhost:7152/api/Product/allColours' \
+  -H "Authorization: Bearer CfDJ8NmLH9oxbCZMv0vJ2THkhBQAgC3J0QuS1516DIC3kDQ2rR4e0pgxbxGF_WLMuKHgg2gmPGijL-fKqSEQhNt1fnM2ndauzFIch0TjaHe9BVvoYhvgS4CdWIZ2H0zKS3EKY243ljSOxF6cQl0BV7MVz8pGMucDX1Tz8_0gtMBmO7AaA8rXC0jbUxCLmjmDoI3agQzOWGLYePJK7fmdpvyNUOghgSrmhgUDVR8Q1AJR9TxgbeR60ilRdxx_JP8Z91TLwr5Mzh1vwkgpokoj1C8b0JhVFzo5ET0nh9c7sPnjyzq16eh-Q7jftZsnudi7gK8vPusrOuhjvuU1FLaawUp5D26MyFwoxSQD63OZiDvg-auQcFLxtHIJYgVPezhhdLFqGtVK6HtEGzA6f8jKHsBAfOhQ3sJ6STIcxjuHoxFB-Qv3xO91lYyWy6XGkUzata--BTRLGrQEM7xi6AmkBCHHCJtk-AaYlfmTibNQfmfqvV07sy-MdCxJqpCmKABoPouLLkXDCldbku-GNTjPgiznBZD1qjBGcwVzECXCwmFncn7H3xpGXtJlYjeEZlycTxobu-bVkA9sIOiMqWSqPyBbqmrUqJJMGaYlNMb_XlmUw9GvJcgXATpKfsGQ2zWa4ztWu52Gi0kDwyYBhxD6SoDKkXBBcO41v38Aj47Q8YR9qp7saZ8OJNd_URDdK0SVndWBig" \
+  -H 'accept: application/json' \
+  -v
+
+LISTALLPRODUCTS
+---------------
+curl -X 'GET' \
+  'https://localhost:7152/api/Product' \
+  -H "Authorization: Bearer CfDJ8NmLH9oxbCZMv0vJ2THkhBQLgluwxMEu-Ufxo-yFYhmWlTy3NDuK50mIHCG3KUGFXfD92JRxA-leXT0rL2DHvGvzN0n9TAtvPgIG7X56gV3rkQLMfOj_Km2wlWr7f2dolr8QcUsdRZarQG7PV7J_y3ciLtF5Ixd6OvFC9_157xtlGaymEm8hXz2tQrQzkfPtfD0qNeHpnYl8Bszn6nYoa8sJonjVeqVOg1mbSjqDD7et2i2aK4akb5kY9z3i7QNQB9egBH6cCRH6glrM_XBy9HudTLRBCDyCkwVz0I6oo0GtbfNVg7NxbXcHDp2kt8K56yYH1OpmqEBMmvC7342zG0GgQvqVwAkma610SzHBZjm0NBDsuUcs6kq3ZKLA9JcOkvasGQFaCZLiD1KqAO1Yg4KBSUYy47dXxkptC4rmCuqxKTX0HfAjb-OmpWZbXmvs7IjfOSxr4uuhf1j7zYqkAZYjHe1GxB_2tAzbLDKgkZZQzXaIZnxuFDGLY4BQhV4e0532joChZtuk0fpKXxQ6HB69w_7KRzCHwuvRumaL4woYbLbOvr4tenxTlJXJH2CaZvHrIBMtSZq5rIDCt1ZODhvjta5ZqTjeDH4YQ5fbPk6TDSgykU_EW_kfl6SvYW4g0tjhA_63lars08pu2Np9Dyxr1ffjDv3SkPPZL9FJn8ZIW3X5GfjZTTGQdg95baw0Yg" \
+  -H 'accept: application/json' \
+  -v
+
+LISTALLPRODUCTS_FORCOLOURID
+---------------
+curl -X 'GET' \
+  'https://localhost:7152/api/Product/08ce4b3e-dde0-4563-86a7-321cd32b30f6' \
+  -H "Authorization: Bearer CfDJ8NmLH9oxbCZMv0vJ2THkhBQAgC3J0QuS1516DIC3kDQ2rR4e0pgxbxGF_WLMuKHgg2gmPGijL-fKqSEQhNt1fnM2ndauzFIch0TjaHe9BVvoYhvgS4CdWIZ2H0zKS3EKY243ljSOxF6cQl0BV7MVz8pGMucDX1Tz8_0gtMBmO7AaA8rXC0jbUxCLmjmDoI3agQzOWGLYePJK7fmdpvyNUOghgSrmhgUDVR8Q1AJR9TxgbeR60ilRdxx_JP8Z91TLwr5Mzh1vwkgpokoj1C8b0JhVFzo5ET0nh9c7sPnjyzq16eh-Q7jftZsnudi7gK8vPusrOuhjvuU1FLaawUp5D26MyFwoxSQD63OZiDvg-auQcFLxtHIJYgVPezhhdLFqGtVK6HtEGzA6f8jKHsBAfOhQ3sJ6STIcxjuHoxFB-Qv3xO91lYyWy6XGkUzata--BTRLGrQEM7xi6AmkBCHHCJtk-AaYlfmTibNQfmfqvV07sy-MdCxJqpCmKABoPouLLkXDCldbku-GNTjPgiznBZD1qjBGcwVzECXCwmFncn7H3xpGXtJlYjeEZlycTxobu-bVkA9sIOiMqWSqPyBbqmrUqJJMGaYlNMb_XlmUw9GvJcgXATpKfsGQ2zWa4ztWu52Gi0kDwyYBhxD6SoDKkXBBcO41v38Aj47Q8YR9qp7saZ8OJNd_URDdK0SVndWBig" \
+  -H 'accept: application/json' \
+  -v
+
+ADDPRODUCT
+----------
+curl -X 'POST' \
+  'https://localhost:7152/api/product/addproduct' \
+  -H 'accept: */*' \
+  -H "Authorization: Bearer CfDJ8NmLH9oxbCZMv0vJ2THkhBQAgC3J0QuS1516DIC3kDQ2rR4e0pgxbxGF_WLMuKHgg2gmPGijL-fKqSEQhNt1fnM2ndauzFIch0TjaHe9BVvoYhvgS4CdWIZ2H0zKS3EKY243ljSOxF6cQl0BV7MVz8pGMucDX1Tz8_0gtMBmO7AaA8rXC0jbUxCLmjmDoI3agQzOWGLYePJK7fmdpvyNUOghgSrmhgUDVR8Q1AJR9TxgbeR60ilRdxx_JP8Z91TLwr5Mzh1vwkgpokoj1C8b0JhVFzo5ET0nh9c7sPnjyzq16eh-Q7jftZsnudi7gK8vPusrOuhjvuU1FLaawUp5D26MyFwoxSQD63OZiDvg-auQcFLxtHIJYgVPezhhdLFqGtVK6HtEGzA6f8jKHsBAfOhQ3sJ6STIcxjuHoxFB-Qv3xO91lYyWy6XGkUzata--BTRLGrQEM7xi6AmkBCHHCJtk-AaYlfmTibNQfmfqvV07sy-MdCxJqpCmKABoPouLLkXDCldbku-GNTjPgiznBZD1qjBGcwVzECXCwmFncn7H3xpGXtJlYjeEZlycTxobu-bVkA9sIOiMqWSqPyBbqmrUqJJMGaYlNMb_XlmUw9GvJcgXATpKfsGQ2zWa4ztWu52Gi0kDwyYBhxD6SoDKkXBBcO41v38Aj47Q8YR9qp7saZ8OJNd_URDdK0SVndWBig" \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "Name": "Commuter bicycle",
+  "Description": "Commuter bicycle long description",
+  "Price": "949.99", 
+  "ColourId": "e77e6081-e479-48a6-8df7-4b6035b5a912"
+}' -v
+
+--response of new product guid 205dc92b-be61-4b5e-d59e-08dcbdf1e5cd
+
+GETDETAILFORPRODUCTGUID
+-----------------------
+curl -X 'GET' \
+  'https://localhost:7152/api/Product/205dc92b-be61-4b5e-d59e-08dcbdf1e5cd' \
+  -H "Authorization: Bearer CfDJ8NmLH9oxbCZMv0vJ2THkhBQAgC3J0QuS1516DIC3kDQ2rR4e0pgxbxGF_WLMuKHgg2gmPGijL-fKqSEQhNt1fnM2ndauzFIch0TjaHe9BVvoYhvgS4CdWIZ2H0zKS3EKY243ljSOxF6cQl0BV7MVz8pGMucDX1Tz8_0gtMBmO7AaA8rXC0jbUxCLmjmDoI3agQzOWGLYePJK7fmdpvyNUOghgSrmhgUDVR8Q1AJR9TxgbeR60ilRdxx_JP8Z91TLwr5Mzh1vwkgpokoj1C8b0JhVFzo5ET0nh9c7sPnjyzq16eh-Q7jftZsnudi7gK8vPusrOuhjvuU1FLaawUp5D26MyFwoxSQD63OZiDvg-auQcFLxtHIJYgVPezhhdLFqGtVK6HtEGzA6f8jKHsBAfOhQ3sJ6STIcxjuHoxFB-Qv3xO91lYyWy6XGkUzata--BTRLGrQEM7xi6AmkBCHHCJtk-AaYlfmTibNQfmfqvV07sy-MdCxJqpCmKABoPouLLkXDCldbku-GNTjPgiznBZD1qjBGcwVzECXCwmFncn7H3xpGXtJlYjeEZlycTxobu-bVkA9sIOiMqWSqPyBbqmrUqJJMGaYlNMb_XlmUw9GvJcgXATpKfsGQ2zWa4ztWu52Gi0kDwyYBhxD6SoDKkXBBcO41v38Aj47Q8YR9qp7saZ8OJNd_URDdK0SVndWBig" \
+  -H 'accept: text/plain' \
+  -v
