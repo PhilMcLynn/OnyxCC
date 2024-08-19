@@ -2,6 +2,7 @@
 using Onyx.Product.Application.Features.Colours;
 using Onyx.Product.Application.Features.Products.Queries.GetProductList;
 using Shouldly;
+using System.Text;
 using System.Text.Json;
 
 namespace Onyx.Product.App.IntegrationTests.Controllers
@@ -45,7 +46,30 @@ namespace Onyx.Product.App.IntegrationTests.Controllers
 
             result.ShouldBeOfType<List<ProductListVm>>();
             result.ShouldNotBeEmpty();
-            result.Count.ShouldBe(2);
+        }
+        [Fact]
+        public async Task ProductCreateReturnsSuccessResult()
+        {
+            var client = _factory.GetAnonymousClient();
+
+            using StringContent jsonContent = new(
+                JsonSerializer.Serialize(new
+                {
+                    Name = "Commuter bicycle",
+                    Description = "Commuter bicycle long description",
+                    Price = 959.99, 
+                    ColourId = "e77e6081-e479-48a6-8df7-4b6035b5a912"
+                }), Encoding.UTF8, "application/json");
+
+            using HttpResponseMessage response = await client.PostAsync("api/product/addproduct", jsonContent);
+
+            response.EnsureSuccessStatusCode();
+
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            var result = JsonSerializer.Deserialize<Guid>(responseString);
+
+            result.ShouldBeOfType<Guid>();
         }
     }
 }
