@@ -8,11 +8,11 @@ Project follows Clean Arhictecture principals and consequently you should consid
 Mediatr pattern is used to enable loose coupling amongst the code features
 
 ## Getting Started
-VS 2022 
-ASP.NET CORE V8
-LOCAL SQLSERVER
-AUTHENTICATION USING NEW V8 Microsoft.AspNetCore.Identity 
-	The curl session follows a register & login to get bearer token to enable working with secured functions
+* VS 2022
+* ASP.NET CORE V8
+* LOCAL SQLSERVER
+* AUTHENTICATION USING V8 Microsoft.AspNetCore.Identity
+  The curl session follows a register & login to get bearer token to enable working with secured functions
 	(NB use swagger to review full list of functions https://localhost:<YOUR_PORT>/swagger/index.html
 
 Root repo folder contains a curl_session.txt file with listing for a session that demonstrates the functions
